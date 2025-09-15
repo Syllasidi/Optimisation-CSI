@@ -12,3 +12,9 @@ FROM pg_roles WHERE rolcreatedb = 'true';
 SELECT datname, usename, client_addr, state
 FROM pg_stat_activity;
 
+-- 5. Comptes connectés sur plus de deux bases distinctes
+SELECT usename, COUNT(DISTINCT datname) AS nb_bases
+FROM pg_stat_activity
+GROUP BY usename
+HAVING COUNT(DISTINCT datname) > 2;
+
