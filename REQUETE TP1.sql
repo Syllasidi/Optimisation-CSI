@@ -8,3 +8,7 @@ FROM pg_roles;
 -- 3 Quels comptes peuvent créer des bases
 SELECT rolname, rolsuper, rolcreatedb, rolcanlogin
 FROM pg_roles WHERE rolcreatedb = 'true';
+-- 4 comptes sont actuellement connectés au serveur
+SELECT datname, usename, client_addr, state
+FROM pg_stat_activity;
+
